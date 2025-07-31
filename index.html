@@ -1,34 +1,256 @@
-<!DOCTYPE html>
-<html>
+!DOCTYPE html>
+<html lang="en">
 <head>
-  <title>Smart Budget Travel Planner</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <title>Smart Budget Travel Planner 🌍✨</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Google Fonts for style -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&display=swap" rel="stylesheet">
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: #f6f8fa;
+            margin: 0;
+            color: #222;
+        }
+        header {
+            background: linear-gradient(90deg, #4e54c8 0%, #8f94fb 100%);
+            color: #fff;
+            padding: 2rem 1rem;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+            letter-spacing: 2px;
+        }
+        header p {
+            margin-top: 0.5rem;
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        .container {
+            max-width: 1100px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        .card {
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: 0 4px 16px rgba(78,84,200,0.08);
+            padding: 1.5rem;
+            transition: transform 0.2s;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        .card:hover {
+            transform: translateY(-6px) scale(1.03);
+        }
+        .card i {
+            font-size: 2rem;
+            margin-bottom: 0.7rem;
+            color: #4e54c8;
+        }
+        .card h2 {
+            font-size: 1.3rem;
+            margin: 0 0 0.5rem 0;
+        }
+        .card p {
+            font-size: 1rem;
+            margin: 0 0 0.5rem 0;
+            opacity: 0.85;
+        }
+        /* Estimator & Checklist */
+        .tools {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        @media (max-width: 800px) {
+            .tools {
+                grid-template-columns: 1fr;
+            }
+        }
+        .tool-box {
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: 0 4px 16px rgba(78,84,200,0.08);
+            padding: 1.5rem;
+        }
+        .tool-box h3 {
+            margin-top: 0;
+            font-size: 1.2rem;
+            color: #4e54c8;
+        }
+        .estimator label, .checklist label {
+            font-weight: 500;
+            margin-top: 0.7rem;
+            display: block;
+        }
+        .estimator input, .estimator select {
+            width: 100%;
+            padding: 0.5rem;
+            margin-top: 0.3rem;
+            margin-bottom: 0.7rem;
+            border-radius: 6px;
+            border: 1px solid #ddd;
+            font-size: 1rem;
+        }
+        .estimator button {
+            background: #4e54c8;
+            color: #fff;
+            border: none;
+            padding: 0.7rem 1.2rem;
+            border-radius: 6px;
+            font-size: 1rem;
+            cursor: pointer;
+            margin-top: 0.5rem;
+            transition: background 0.2s;
+        }
+        .estimator button:hover {
+            background: #8f94fb;
+        }
+        .estimator-result {
+            margin-top: 1rem;
+            font-weight: 700;
+            color: #222;
+        }
+        .checklist ul {
+            list-style: none;
+            padding: 0;
+            margin: 0.5rem 0 0 0;
+        }
+        .checklist li {
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+        }
+        .checklist input[type="checkbox"] {
+            margin-right: 0.7rem;
+            accent-color: #4e54c8;
+        }
+        footer {
+            text-align: center;
+            padding: 1.5rem 0;
+            background: #f0f2f7;
+            color: #888;
+            font-size: 1rem;
+            margin-top: 2rem;
+            border-top: 1px solid #e0e0e0;
+        }
+    </style>
 </head>
 <body>
-  <header class="hero">
-    <h1>Explore More. Spend Less.</h1>
-    <p>Your ultimate budget travel guide</p>
-  </header>
-
-  <nav>
-    <ul>
-      <li><a href="index.html">Home</a></li>
-      <li><a href="destinations.html">Destinations</a></li>
-      <li><a href="tips.html">Tips</a></li>
-      <li><a href="contact.html">Contact</a></li>
-    </ul>
-  </nav>
-
-  <h2>Budget Calculator</h2>
-  <input type="number" id="days" placeholder="Number of days">
-  <input type="number" id="budget" placeholder="Total budget (₹)">
-  <button onclick="calculateBudget()">Calculate</button>
-  <p id="output"></p>
-
-  <footer>
-    <p>&copy; 2025 Smart Budget Travel Planner | DSU Project</p>
-  </footer>
-
-  <script src="script.js"></script>
+    <header>
+        <h1>Smart Budget Travel Planner 🌍✨</h1>
+        <p>Plan amazing trips on a student budget! Find destinations, tips, cost estimators, and packing checklists.</p>
+    </header>
+    <div class="container">
+        <!-- Cards Section -->
+        <div class="cards">
+            <div class="card">
+                <i class="fas fa-map-marked-alt"></i>
+                <h2>Destination Ideas</h2>
+                <p>Discover affordable and exciting places for students: hostels, backpacking routes, and hidden gems.</p>
+            </div>
+            <div class="card">
+                <i class="fas fa-lightbulb"></i>
+                <h2>Travel Tips</h2>
+                <p>Get smart advice on saving money, booking flights, and staying safe while exploring new cities.</p>
+            </div>
+            <div class="card">
+                <i class="fas fa-calculator"></i>
+                <h2>Cost Estimator</h2>
+                <p>Estimate your trip expenses based on destination, duration, and travel style.</p>
+            </div>
+            <div class="card">
+                <i class="fas fa-suitcase-rolling"></i>
+                <h2>Packing Checklist</h2>
+                <p>Stay organized with a customizable packing list for every adventure.</p>
+            </div>
+        </div>
+        <!-- Tools Section -->
+        <div class="tools">
+            <!-- Cost Estimator Tool -->
+            <div class="tool-box estimator">
+                <h3><i class="fas fa-calculator"></i> Trip Cost Estimator</h3>
+                <form id="estimatorForm">
+                    <label for="destination">Destination</label>
+                    <select id="destination" required>
+                        <option value="">Select...</option>
+                        <option value="local">Local (within country)</option>
+                        <option value="asia">Asia</option>
+                        <option value="europe">Europe</option>
+                        <option value="usa">USA</option>
+                    </select>
+                    <label for="days">Number of Days</label>
+                    <input type="number" id="days" min="1" max="60" required>
+                    <label for="style">Travel Style</label>
+                    <select id="style" required>
+                        <option value="">Select...</option>
+                        <option value="budget">Budget</option>
+                        <option value="standard">Standard</option>
+                        <option value="luxury">Luxury</option>
+                    </select>
+                    <button type="submit">Estimate Cost</button>
+                </form>
+                <div class="estimator-result" id="estimatorResult"></div>
+            </div>
+            <!-- Packing Checklist Tool -->
+            <div class="tool-box checklist">
+                <h3><i class="fas fa-suitcase-rolling"></i> Packing Checklist</h3>
+                <ul id="packingList">
+                    <li><input type="checkbox" id="passport"><label for="passport">Passport / ID</label></li>
+                    <li><input type="checkbox" id="tickets"><label for="tickets">Tickets & Booking Confirmations</label></li>
+                    <li><input type="checkbox" id="clothes"><label for="clothes">Clothes & Shoes</label></li>
+                    <li><input type="checkbox" id="toiletries"><label for="toiletries">Toiletries</label></li>
+                    <li><input type="checkbox" id="charger"><label for="charger">Phone Charger & Adapter</label></li>
+                    <li><input type="checkbox" id="snacks"><label for="snacks">Snacks & Water Bottle</label></li>
+                    <li><input type="checkbox" id="cash"><label for="cash">Cash / Cards</label></li>
+                    <li><input type="checkbox" id="meds"><label for="meds">Medications</label></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <footer>
+        &copy; 2024 Smart Budget Travel Planner. Made for students, by students.
+    </footer>
+    <script>
+        // Simple Cost Estimator Logic
+        document.getElementById('estimatorForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const destination = document.getElementById('destination').value;
+            const days = parseInt(document.getElementById('days').value, 10);
+            const style = document.getElementById('style').value;
+            let base = 0;
+            if (destination === 'local') base = 30;
+            else if (destination === 'asia') base = 45;
+            else if (destination === 'europe') base = 70;
+            else if (destination === 'usa') base = 80;
+            else base = 0;
+            let multiplier = 1;
+            if (style === 'budget') multiplier = 1;
+            else if (style === 'standard') multiplier = 1.7;
+            else if (style === 'luxury') multiplier = 2.5;
+            else multiplier = 1;
+            if (base === 0 || isNaN(days) || days < 1) {
+                document.getElementById('estimatorResult').textContent = "Please fill all fields correctly.";
+                return;
+            }
+            const total = Math.round(base * multiplier * days);
+            document.getElementById('estimatorResult').textContent = `Estimated trip cost: $${total} USD`;
+        });
+    </script>
 </body>
-</html>
+</html></ul>

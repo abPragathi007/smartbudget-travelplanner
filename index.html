@@ -1,4 +1,4 @@
-!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -70,7 +70,6 @@
             margin: 0 0 0.5rem 0;
             opacity: 0.85;
         }
-        /* Estimator & Checklist */
         .tools {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -150,9 +149,6 @@
             border-top: 1px solid #e0e0e0;
         }
     </style>
-     header {
-    position: relative;
-}
 </head>
 <body>
     <header>
@@ -160,7 +156,6 @@
         <p>Plan amazing trips on a student budget! Find destinations, tips, cost estimators, and packing checklists.</p>
     </header>
     <div class="container">
-        <!-- Cards Section -->
         <div class="cards">
             <div class="card">
                 <i class="fas fa-map-marked-alt"></i>
@@ -183,9 +178,7 @@
                 <p>Stay organized with a customizable packing list for every adventure.</p>
             </div>
         </div>
-        <!-- Tools Section -->
         <div class="tools">
-            <!-- Cost Estimator Tool -->
             <div class="tool-box estimator">
                 <h3><i class="fas fa-calculator"></i> Trip Cost Estimator</h3>
                 <form id="estimatorForm">
@@ -211,7 +204,7 @@
                         <option value="germany">Germany</option>
                         <option value="brazil">Brazil</option>
                         <option value="egypt">Egypt</option>
-                     </select>
+                    </select>
                     <label for="days">Number of Days</label>
                     <input type="number" id="days" min="1" max="60" required>
                     <label for="style">Travel Style</label>
@@ -225,7 +218,6 @@
                 </form>
                 <div class="estimator-result" id="estimatorResult"></div>
             </div>
-            <!-- Packing Checklist Tool -->
             <div class="tool-box checklist">
                 <h3><i class="fas fa-suitcase-rolling"></i> Packing Checklist</h3>
                 <ul id="packingList">
@@ -244,48 +236,39 @@
     <footer>
         &copy; 2024 Smart Budget Travel Planner. Made for students, by students.
     </footer>
+
     <script>
-        // Simple Cost Estimator Logic
         document.getElementById('estimatorForm').addEventListener('submit', function(e) {
             e.preventDefault();
             const destination = document.getElementById('destination').value;
             const days = parseInt(document.getElementById('days').value, 10);
             const style = document.getElementById('style').value;
             let base = 0;
-            if (destination === 'local') base = 30;
-            else if (destination === 'asia') base = 45;
-            else if (destination === 'europe') base = 70;
-            else if (destination === 'usa') base = 80;
-            else if (destination === 'india') base = 25;
-            else if (destination === 'australia') base = 75;
-            else if (destination === 'africa') base = 50;
-            else if (destination === 'southamerica') base = 55;
-            else if (destination === 'japan') base = 85;
-            else if (destination === 'canada') base = 65;
-            else if (destination === 'thailand') base = 40;
-            else if (destination === 'singapore') base = 90;
-            else if (destination === 'dubai') base = 100;
-            else if (destination === 'malaysia') base = 35;
-            else if (destination === 'uk') base = 75;
-           else if (destination === 'france') base = 80;
-           else if (destination === 'germany') base = 70;
-           else if (destination === 'brazil') base = 60;
-           else if (destination === 'egypt') base = 45; 
 
-            else base = 0;
+            // INR cost per day
+            const costs = {
+                local: 2500, asia: 3500, europe: 6000, usa: 7000, india: 2000,
+                australia: 6500, africa: 4000, southamerica: 4500, japan: 7500,
+                canada: 5500, thailand: 3000, singapore: 7000, dubai: 8000,
+                malaysia: 2700, uk: 6200, france: 7000, germany: 6000,
+                brazil: 4800, egypt: 3500
+            };
+
+            base = costs[destination] || 0;
+
             let multiplier = 1;
             if (style === 'budget') multiplier = 1;
-            else if (style === 'standard') multiplier = 1.7;
-            else if (style === 'luxury') multiplier = 2.5;
-            else multiplier = 1;
+            else if (style === 'standard') multiplier = 1.5;
+            else if (style === 'luxury') multiplier = 2.3;
+
             if (base === 0 || isNaN(days) || days < 1) {
                 document.getElementById('estimatorResult').textContent = "Please fill all fields correctly.";
                 return;
             }
-       const total = Math.round(base * multiplier * days);
-         const inr = Math.round(total * 83);
-        document.getElementById('estimatorResult').textContent = `Estimated trip cost: ₹${inr} INR`;
-           });
+
+            const total = Math.round(base * multiplier * days);
+            document.getElementById('estimatorResult').textContent = `Estimated trip cost: ₹${total.toLocaleString()} INR`;
+        });
     </script>
 </body>
-</html></ul>
+</html>

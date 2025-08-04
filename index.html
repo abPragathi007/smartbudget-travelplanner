@@ -150,10 +150,13 @@
             border-top: 1px solid #e0e0e0;
         }
     </style>
+     header {
+    position: relative;
+}
 </head>
 <body>
     <header>
-        <h1>Smart Budget Travel Planner 🌍✨</h1>
+       <h1>Smart Budget Travel Planner 🌍✨</h1>
         <p>Plan amazing trips on a student budget! Find destinations, tips, cost estimators, and packing checklists.</p>
     </header>
     <div class="container">
@@ -193,7 +196,22 @@
                         <option value="asia">Asia</option>
                         <option value="europe">Europe</option>
                         <option value="usa">USA</option>
-                    </select>
+                        <option value="india">India</option>
+                        <option value="australia">Australia</option>
+                        <option value="africa">Africa</option>
+                        <option value="southamerica">South America</option>
+                        <option value="japan">Japan</option>
+                        <option value="canada">Canada</option>
+                        <option value="thailand">Thailand</option>
+                        <option value="singapore">Singapore</option>
+                        <option value="dubai">Dubai</option>
+                        <option value="malaysia">Malaysia</option>
+                        <option value="uk">UK</option>
+                        <option value="france">France</option>
+                        <option value="germany">Germany</option>
+                        <option value="brazil">Brazil</option>
+                        <option value="egypt">Egypt</option>
+                     </select>
                     <label for="days">Number of Days</label>
                     <input type="number" id="days" min="1" max="60" required>
                     <label for="style">Travel Style</label>
@@ -238,6 +256,22 @@
             else if (destination === 'asia') base = 45;
             else if (destination === 'europe') base = 70;
             else if (destination === 'usa') base = 80;
+            else if (destination === 'india') base = 25;
+            else if (destination === 'australia') base = 75;
+            else if (destination === 'africa') base = 50;
+            else if (destination === 'southamerica') base = 55;
+            else if (destination === 'japan') base = 85;
+            else if (destination === 'canada') base = 65;
+            else if (destination === 'thailand') base = 40;
+            else if (destination === 'singapore') base = 90;
+            else if (destination === 'dubai') base = 100;
+            else if (destination === 'malaysia') base = 35;
+            else if (destination === 'uk') base = 75;
+           else if (destination === 'france') base = 80;
+           else if (destination === 'germany') base = 70;
+           else if (destination === 'brazil') base = 60;
+           else if (destination === 'egypt') base = 45; 
+
             else base = 0;
             let multiplier = 1;
             if (style === 'budget') multiplier = 1;
@@ -248,9 +282,10 @@
                 document.getElementById('estimatorResult').textContent = "Please fill all fields correctly.";
                 return;
             }
-            const total = Math.round(base * multiplier * days);
-            document.getElementById('estimatorResult').textContent = `Estimated trip cost: $${total} USD`;
-        });
+       const total = Math.round(base * multiplier * days);
+         const inr = Math.round(total * 83);
+        document.getElementById('estimatorResult').textContent = `Estimated trip cost: ₹${inr} INR`;
+           });
     </script>
 </body>
 </html></ul>
